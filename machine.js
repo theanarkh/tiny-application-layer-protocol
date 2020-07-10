@@ -57,26 +57,26 @@ const STATE_TRANSITION = {
         return [PARSE_STATE.PARSE_DATA, data];
     },
     [PARSE_STATE.PARSE_DATA](data) {
-    const len = packet.get('length');
-    if (data.length < len) {
-        return [-1, data];
-    }
-    packet.set('data', data.slice(0, len));
-    // 解析完数据了，完成一个包的解析，跳过数据部分和结束符
-    data = data.slice(len);
-    // 解析完一个数据包，输出
-    return [PARSE_STATE.PARSE_END, data];
+        const len = packet.get('length');
+        if (data.length < len) {
+            return [-1, data];
+        }
+        packet.set('data', data.slice(0, len));
+        // 解析完数据了，完成一个包的解析，跳过数据部分和结束符
+        data = data.slice(len);
+        // 解析完一个数据包，输出
+        return [PARSE_STATE.PARSE_END, data];
     },
     [PARSE_STATE.PARSE_END](data) {
-    if (!data || !data[0]) {
-        return [-1, data];
-    }
-    if (data[0] !== PACKET_END) {
-        return [-1, data ? data.slice(1) : data];
-    }
-    console.log('parse success: ', packet);
-    // 跳过开始标记符
-    return [PARSE_STATE.PARSE_INIT, data.slice(Buffer.from([PACKET_START]).length)];
+        if (!data || !data[0]) {
+            return [-1, data];
+        }
+        if (data[0] !== PACKET_END) {
+            return [-1, data ? data.slice(1) : data];
+        }
+        console.log('parse success: ', packet);
+        // 跳过开始标记符
+        return [PARSE_STATE.PARSE_INIT, data.slice(Buffer.from([PACKET_START]).length)];
     },
   };
 /**
