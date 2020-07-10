@@ -38,7 +38,11 @@ const STATE_TRANSITION = {
             return [-1, data];
         }
         if (data[0] !== PACKET_START) {
-            return [-1, data ? data.slice(1) : data];
+            const position = data.indexOf(PACKET_START);
+            if (position === -1) {
+                return [-1, data.slice(data.length)];
+            }
+            return [PARSE_STATE.PACKET_START, data.slice(position + 1)];
         }
         packet = new Packet();
         // 跳过开始标记符
@@ -72,7 +76,11 @@ const STATE_TRANSITION = {
             return [-1, data];
         }
         if (data[0] !== PACKET_END) {
-            return [-1, data ? data.slice(1) : data];
+            const position = data.indexOf(PACKET_END);
+            if (position === -1) {
+                return [-1, data.slice(data.length)];
+            }
+            return [PARSE_STATE.PARSE_END, data.slice(position + 1)];
         }
         console.log('parse success: ', packet);
         // 跳过开始标记符
@@ -98,7 +106,7 @@ function getMachine(state, initState, endState) {
         }
         // 还没结束，继续执行
         while(ret !== endState) {
-            if (!state[ret]) {
+            if (!state[ret] || !buffer || !buffer.length) {
                 return;
             }
             /*
