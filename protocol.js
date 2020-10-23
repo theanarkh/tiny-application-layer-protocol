@@ -118,10 +118,10 @@ class FSM {
         // 当前待解析的数据
         this.buffer = null;
     }
-
+    // data: Buffer
     run(data) {
         // 没有数据或者解析结束了直接返回
-        if (this.state === this.endState || !data || !data.length) {
+        if (this.state === this.endState || !data || !data.byteLength) {
             return;
         }
         // 保存待解析的数据

@@ -1,6 +1,6 @@
 {
   "name": "tiny-application-layer-protocol",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "实现自己的应用层协议和解析器，可以使用于tcp，udp、unix域之上。",
   "main": "protocol.js",
   "directories": {
