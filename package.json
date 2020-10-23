@@ -1,0 +1,24 @@
+{
+  "name": "tiny-application-layer-protocol",
+  "version": "1.0.0",
+  "description": "实现自己的应用层协议和解析器，可以使用于tcp，udp、unix域之上。",
+  "main": "protocol.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": ["protocol.js"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theanarkh/tiny-application-layer-protocol.git"
+  },
+  "keywords": ["tiny-application-layer-protocol"],
+  "author": "gc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theanarkh/tiny-application-layer-protocol/issues"
+  },
+  "homepage": "https://github.com/theanarkh/tiny-application-layer-protocol#readme"
+}
