@@ -1,5 +1,5 @@
 # tiny-application-layer-protocol
-实现自己的应用层协议和解析器，可以使用于tcp，udp、unix域之上。
+实现自己的应用层协议和解析器，可以使用于tcp、unix域之上。比如在在tcp长连接中，我们可以并发请求，但是我们需要解析出每一个请求对应的数据，并且响应需要按序返回（http2.0解决了这个问题），tiny-application-layer-protocol支持在tcp、udp、unix域中，并发请求，响应不需要按序返回。
 # 1 导出的功能
 ```
 module.exports = {
